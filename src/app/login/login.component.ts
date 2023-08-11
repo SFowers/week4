@@ -11,7 +11,7 @@ export class LoginComponent {
   email:string = "";
   password:string = "";
 
-  users = [{email:'abc@gmail.com', password:'123'}, 
+  users = [{email:'abc', password:'123'}, 
           {email:'def@gmail.com', password:'123'}, 
           {email:'ghi@gmail.com', password:'123'}];
 
@@ -25,7 +25,8 @@ export class LoginComponent {
       }
     }
     if(confirmedUser) {
-      this.router.navigateByUrl('/account' );
+      //this.router.navigateByUrl('/account' );
+      this.router.navigateByUrl('/account/' + this.email);
     } else {
       alert("Error: Login Details do not match.");
     }

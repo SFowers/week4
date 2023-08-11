@@ -13,7 +13,8 @@ export class AccountComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    //this.email = this.route.snapshot.params.email;
+    this.email = this.route.snapshot.params['email'];
+    console.log(this.route.snapshot.params);
     /*
     this.route.paramMap.subscribe(
       params => {this.email = params.get('email');}
