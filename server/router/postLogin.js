@@ -1,27 +1,27 @@
-var express = require('express');
-var app = express();
+var fs = require('fs');
 
-var bodyParser = require('body-parser');
-app.user(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-
-var cors = require('cors');
-app.use(cors());
-app.use(express.static(path.join(__dirname, '../dist/week4tut/')));
-console.log(__dirname);
-
-var http = require('http').Server(app);
-let server = http.listen(3000, function () {
-    let host = server.address().address;
-    let port = server.address().port;
-    console.log("Server listening on: " + host + " port: " + port);
-});
-
-app.post('/login', require('/router/postLogin'));
-app.post('/loginafter', require('/router/postLoginafter'))
+module.exports = function(req, res) {
+    var u = req.body.username;
+    var p = req.body.pwd;
+    c = u + p;
+    console.log(c);
+    fs.readFile('./server/data/users.json', 'utf8', function(err, data) {
+        if(err) throw err;
+        let userArray = JSON.parse(data);
+        console.log(userArray);
+        let i = userArray.findIndex(user => 
+            ((user.username == u) && (user.pwd == p)));
+        if(i == -1) {
+            res.send({"ok": false});
+        } else {
+            console.log(userArray[i]);
+            res.send({"ok": true});
+        }
+    });
+};
 
 /*
-app.post('/api/auth', function(req, res) {
+app.post('/api/login', function(req, res) {
     let users = [{username: 'abc', birthdate: '1990/01/01', age: 33, email: 'abc@gmail.com', password: '123', valid: true},
     {username: 'def', birthdate: '1990/01/01', age: 33, email: 'def@gmail.com', password: '123', valid: true},
     {username: 'ghi', birthdate: '1990/01/01', age: 33, email: 'ghi@gmail.com', password: '123', valid: true}];

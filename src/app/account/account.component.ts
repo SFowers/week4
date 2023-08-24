@@ -8,17 +8,29 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AccountComponent implements OnInit {
 
-  email:string = "";
+  userid = sessionStorage.getItem('userid');
+  username = sessionStorage.getItem('username');
+  birthdate = sessionStorage.getItem('userbirthdate');
+  userage = sessionStorage.getItem('userage');
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.email = this.route.snapshot.params['email'];
-    console.log(this.route.snapshot.params);
+    //this.email = this.route.snapshot.params['email'];
+    //console.log(this.route.snapshot.params);
     /*
     this.route.paramMap.subscribe(
       params => {this.email = params.get('email');}
     );
+    */
+  }
+
+  saveToStorage() {
+    /*
+    sessionStorage.setItem('userid', this.userid.toString());
+    sessionStorage.setItem('username', this.username);
+    sessionStorage.setItem('userbirthdate', this.userbirthdate);
+    sessionStorage.setItem('userage', this.userage.toString());
     */
   }
 }
