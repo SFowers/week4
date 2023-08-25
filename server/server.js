@@ -1,13 +1,16 @@
 var express = require('express');
 var app = express();
+var path = require('path');
+var fs = require('fs');
 
 var bodyParser = require('body-parser');
-app.user(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 var cors = require('cors');
 app.use(cors());
-app.use(express.static(path.join(__dirname, '../dist/week4tut/')));
+
+app.use(express.static(__dirname + '../dist/week4tut'));
 console.log(__dirname);
 
 var http = require('http').Server(app);
@@ -17,8 +20,12 @@ let server = http.listen(3000, function () {
     console.log("Server listening on: " + host + " port: " + port);
 });
 
-app.post('/login', require('/router/postLogin'));
-app.post('/loginafter', require('/router/postLoginafter'))
+require('./router/api-login')(app, path, fs);
+
+
+//app.post('/login', require('./router/api-login'));
+//app.post('/loginafter', require('/router/postLoginafter'))
+
 
 /*
 app.post('/api/auth', function(req, res) {

@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { AuthService } from './services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -7,15 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'week4tut';
+  title = 'Angular Project Server';
 
-  constructor(private router: Router) {}
-  logOut() {
-    sessionStorage.setItem('userid', "");
-    sessionStorage.setItem('username', "");
-    sessionStorage.setItem('userbirthdate', "");
-    sessionStorage.setItem('userage', "");
+  //constructor(private authService:AuthService) {}
+  //private authService = inject(AuthService);
 
-    this.router.navigateByUrl('/');
+  logOut(event:any) {
+    //this.authService.logout(event);
   }
 }

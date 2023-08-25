@@ -2,10 +2,10 @@
   <div class="container-fluid">
     <ul class="nav navbar-nav">
       <li class="active"><a class="nav-link" routerLink="/">Home</a></li>
-      <li> <a class="nav-link" routerLink="/login">login</a></li>
-      <li><a class="nav-link" routerLink="/account">Account</a></li>
+      <li><a class="nav-link" href="/login">login</a></li>
+      <li><a class="nav-link" href="/account">Account</a></li>
       <li><a class="nav-link" routerLink="/profile">Profile</a></li>
-      <li><button class="Logout_button" value="Logout" id="Logout" (click)="logOut()">Logout</button></li>
+      <li><button class="Logout_button" id="Logout" (click)="logOut($event)">Logout</button></li>
     </ul>
   </div>
 </nav>
